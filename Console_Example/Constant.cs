@@ -2,25 +2,25 @@
 
 namespace Exam
 {
-    static enum SORT
+    enum SORT
     {
         ASC = 1,
         DECS = 2
     }
 
-    static enum CODE
+    enum CODE
     {
         NUMBER = 1,
         STRING = 2
     }
 
-    static enum LINQ
+    enum LINQ
     {
         ORDERBY = 1,
         DESENDING = 2
     }
 
-    static enum DUPLICATION
+    enum DUPLICATION
     {
         DISTINCT = 1,
         NOT = 2

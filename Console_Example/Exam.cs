@@ -12,10 +12,10 @@ namespace Exam
 
             Init(state);
 
-            //Console.WriteLine(state.Sort.ToString());
-            //Console.WriteLine(state.Code.ToString());
-            //Console.WriteLine(state.Linq.ToString());
-            //Console.WriteLine(state.Duplication.ToString());
+            Console.WriteLine(state.Sort.ToString());
+            Console.WriteLine(state.Code.ToString());
+            Console.WriteLine(state.Linq.ToString());
+            Console.WriteLine(state.Duplication.ToString());
         }
 
         public static void Init(State state)
@@ -51,20 +51,20 @@ namespace Exam
         }
 
         // 값 추가
-        void Step(State state, int index, string Choice)
+        public static void Step(State state, int index, string Choice)
         {
             switch (index)
             {
-                case 1:
+                case 0:
                     state.Sort = (SORT)Convert.ToInt32(Choice);
                     break;
-                case 2:
+                case 1:
                     state.Code = (CODE)Convert.ToInt32(Choice);
                     break;
-                case 3:
+                case 2:
                     state.Linq = (LINQ)Convert.ToInt32(Choice);
                     break;
-                case 4:
+                case 3:
                     state.Duplication = (DUPLICATION)Convert.ToInt32(Choice);
                     break;
             }
@@ -72,7 +72,7 @@ namespace Exam
         }
 
         // 입력값 검수
-        bool Validate(String value)
+        public static bool Validate(String value)
         {
             try
             {
