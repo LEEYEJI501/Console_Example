@@ -1,8 +1,10 @@
 ﻿using Exam_State;
 using Exam_Stream;
+using Exam_Constant;
 
 namespace Exam
 {
+
     class Exam
     {
         static void Main(string[] args)
@@ -13,13 +15,13 @@ namespace Exam
 
             Init(state);
 
-            Console.WriteLine(state.Sort.ToString());
-            Console.WriteLine(state.Code.ToString());
-            Console.WriteLine(state.Linq.ToString());
-            Console.WriteLine(state.Duplication.ToString());
+            //Console.WriteLine(state.Sort.ToString());
+            //Console.WriteLine(state.Code.ToString());
+            //Console.WriteLine(state.Linq.ToString());
+            //Console.WriteLine(state.Duplication.ToString());
         }
 
-        static void Init(State state)
+        void Init(State state)
         {
             int index = 0;
             string[] ments = new string[] {
@@ -52,7 +54,7 @@ namespace Exam
         }
 
         // 값 추가
-        static void Step(State state, int index, string Choice)
+        void Step(State state, int index, string Choice)
         {
             switch (index)
             {
@@ -73,7 +75,7 @@ namespace Exam
         }
 
         // 입력값 검수
-        static bool Validate(String value)
+        bool Validate(String value)
         {
             try
             {
@@ -92,4 +94,5 @@ namespace Exam
             }
         }
     }
+
 }
