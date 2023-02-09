@@ -12,10 +12,8 @@ namespace Exam
 
             Init(state);
 
-            Console.WriteLine(state.Sort.ToString());
-            Console.WriteLine(state.Code.ToString());
-            Console.WriteLine(state.Linq.ToString());
-            Console.WriteLine(state.Duplication.ToString());
+            string[] arr = streamBuilder.Read();
+
         }
 
         public static void Init(State state)
