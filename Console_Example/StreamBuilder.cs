@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace Exam
+namespace Console_Example
 {
     public class StreamBuilder
     {
@@ -31,7 +31,7 @@ namespace Exam
             {
                 if (!File.Exists(FileName))
                 {
-                    throw new NullReferenceException("해당 파일이 존재하지 않습니다.");
+                    throw new NullReferenceException("파일이 존재하지 않습니다.");
 
                 }
                 return true;

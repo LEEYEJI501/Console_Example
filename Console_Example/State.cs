@@ -1,7 +1,7 @@
 ﻿using System;
 using Exam;
 
-namespace Exam
+namespace Console_Example
 {
     class State
     {

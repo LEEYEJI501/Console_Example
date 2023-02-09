@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Exam
+namespace Console_Example
 {
     enum SORT
     {

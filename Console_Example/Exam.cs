@@ -1,6 +1,6 @@
 ﻿using Exam;
 
-namespace Exam
+namespace Console_Example
 {
     class Exam
     {
@@ -10,15 +10,22 @@ namespace Exam
             StreamBuilder streamBuilder = new StreamBuilder();
             streamBuilder.FileName = @"D:\test.txt";
 
-            Init(state);
-
             string[] arr = streamBuilder.Read();
 
+            if( arr != null )
+            {
+                Init(state);
+            }
+            else
+            {
+                Console.WriteLine("해당 경로에 파일 유무를 확인해주세요.");
+            }            
         }
 
         public static void Init(State state)
         {
             int index = 0;
+
             string[] ments = new string[] {
                 "1.오름차순, 2.내림차순",
                 "1.숫자정렬, 2.문자정렬",
