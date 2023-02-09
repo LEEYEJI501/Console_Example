@@ -1,10 +1,7 @@
-﻿using Exam_State;
-using Exam_Stream;
-using Exam_Constant;
+﻿using Exam;
 
 namespace Exam
 {
-
     class Exam
     {
         static void Main(string[] args)
@@ -21,7 +18,7 @@ namespace Exam
             //Console.WriteLine(state.Duplication.ToString());
         }
 
-        void Init(State state)
+        public static void Init(State state)
         {
             int index = 0;
             string[] ments = new string[] {

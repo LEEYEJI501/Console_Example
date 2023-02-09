@@ -1,9 +1,9 @@
 ﻿using System;
-using Exam_Constant;
+using Exam;
 
-namespace Exam_State
+namespace Exam
 {
-    static class State
+    class State
     {
         public SORT Sort = SORT.ASC;
         public CODE Code = CODE.NUMBER;

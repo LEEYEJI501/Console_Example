@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Exam_Constant
+namespace Exam
 {
     static enum SORT
     {

@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace Exam_Stream
+namespace Exam
 {
     public class StreamBuilder
     {
