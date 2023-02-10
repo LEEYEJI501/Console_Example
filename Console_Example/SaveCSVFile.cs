@@ -6,7 +6,7 @@ namespace Console_Example
 {
     public class SaveCSVFile
     {
-        private const string path = @"D:\";
+        public const string path = @"D:\";
 
         public void SaveFile(string saveFileName, string[] result)
         {

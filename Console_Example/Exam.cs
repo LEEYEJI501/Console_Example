@@ -9,10 +9,11 @@ namespace Console_Example
         {
             State state = new State();
             StreamBuilder streamBuilder = new StreamBuilder();
+            SaveCSVFile saveCSVFile = new SaveCSVFile();
             streamBuilder.FileName = @"D:\test.txt";
 
             // 파일 이름 선언
-            string saveFileName = "Test";
+            string saveFileName = "Test.csv";
 
             string[] arr = streamBuilder.Read();
 
@@ -25,7 +26,7 @@ namespace Console_Example
                 Console.WriteLine("해당 경로에 파일 유무를 확인해주세요.");
             }
 
-            SaveCSVFile(saveFileName, arr);
+            saveCSVFile.SaveFile(saveFileName, arr);
         }
 
         public static void Init(State state)
