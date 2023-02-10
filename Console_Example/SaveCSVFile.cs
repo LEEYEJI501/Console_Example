@@ -1,31 +1,52 @@
-﻿namespace Console_Example
+﻿using System;
+using System.IO;
+using System.Text;
+
+namespace Console_Example
 {
-    class SaveCSVFile
+    public class SaveCSVFile
     {
-        public void SaveFile()
+        private const string path = @"D:\";
+
+        public void SaveFile(string saveFileName, string[] result)
         {
-            string fileName = "test.csv";
-            FileStream fileStream = null;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(path);
+            stringBuilder.Append("/");
+            stringBuilder.Append(saveFileName);
 
             try
             {
-                fileStream = new FileStream(fileName, FileMode.Create);
-                using (StreamWriter writer = new StreamWriter(fileStream))
-                {
-                    writer.Write("");
-                }
+                File.WriteAllLines(stringBuilder.ToString(), result);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                return;
             }
-            finally
-            {
-                if (fileStream != null)
-                {
-                    fileStream.Dispose();
-                }
-            }
+
+            //string fileName = "test.csv";
+            //FileStream fileStream = null;
+
+            //try
+            //{
+            //    fileStream = new FileStream(fileName, FileMode.Create);
+            //    using (StreamWriter writer = new StreamWriter(fileStream))
+            //    {
+            //        writer.Write("");
+            //    }
+            //}
+            //catch (Exception ex) 
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+            //finally
+            //{
+            //    if (fileStream != null)
+            //    {
+            //        fileStream.Dispose();
+            //    }
+            //}
         }
     }
 }

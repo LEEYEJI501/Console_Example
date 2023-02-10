@@ -1,4 +1,5 @@
-﻿using Exam;
+﻿using System;
+using Console_Example;
 
 namespace Console_Example
 {
@@ -10,6 +11,9 @@ namespace Console_Example
             StreamBuilder streamBuilder = new StreamBuilder();
             streamBuilder.FileName = @"D:\test.txt";
 
+            // 파일 이름 선언
+            string saveFileName = "Test";
+
             string[] arr = streamBuilder.Read();
 
             if( arr != null )
@@ -19,7 +23,9 @@ namespace Console_Example
             else
             {
                 Console.WriteLine("해당 경로에 파일 유무를 확인해주세요.");
-            }            
+            }
+
+            SaveCSVFile(saveFileName, arr);
         }
 
         public static void Init(State state)
