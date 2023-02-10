@@ -26,7 +26,7 @@ namespace Console_Example
                 Console.WriteLine("해당 경로에 파일 유무를 확인해주세요.");
             }
 
-            saveCSVFile.SaveFile(saveFileName, arr);
+            //saveCSVFile.SaveFile(saveFileName, arr);
         }
 
         public static void Init(State state)

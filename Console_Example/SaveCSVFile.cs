@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Text;
+﻿using System.Text;
 
 namespace Console_Example
 {
@@ -15,38 +13,28 @@ namespace Console_Example
             stringBuilder.Append("/");
             stringBuilder.Append(saveFileName);
 
-            try
+            if (ValidateParams(result))
             {
                 File.WriteAllLines(stringBuilder.ToString(), result);
+            }
+        }
+
+        public bool ValidateParams(string[] arr)
+        {
+            try
+            {
+                if (arr.Length > 0)
+                    return true;
+                else
+                    Console.WriteLine("결과값이 빈 배열입니다.");
+                return false;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return;
+                return false;
             }
 
-            //string fileName = "test.csv";
-            //FileStream fileStream = null;
-
-            //try
-            //{
-            //    fileStream = new FileStream(fileName, FileMode.Create);
-            //    using (StreamWriter writer = new StreamWriter(fileStream))
-            //    {
-            //        writer.Write("");
-            //    }
-            //}
-            //catch (Exception ex) 
-            //{
-            //    Console.WriteLine(ex.Message);
-            //}
-            //finally
-            //{
-            //    if (fileStream != null)
-            //    {
-            //        fileStream.Dispose();
-            //    }
-            //}
         }
     }
 }
