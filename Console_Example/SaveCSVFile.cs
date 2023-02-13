@@ -8,30 +8,31 @@ namespace Console_Example
 
         public void SaveFile(string saveFileName, string[] result)
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append(path);
-            stringBuilder.Append("/");
-            stringBuilder.Append(saveFileName);
-
-            if (ValidateParams(result))
+            if (Validate(result))
             {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(path);
+                stringBuilder.Append("/");
+                stringBuilder.Append(saveFileName);
+
                 File.WriteAllLines(stringBuilder.ToString(), result);
             }
         }
 
-        public bool ValidateParams(string[] arr)
+        public bool Validate(string[] arr)
         {
             try
             {
                 if (arr.Length > 0)
                     return true;
-                else
-                    Console.WriteLine("결과값이 빈 배열입니다.");
-                return false;
+
+
+                throw new Exception("빈 배열 들어옴");
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+
                 return false;
             }
 

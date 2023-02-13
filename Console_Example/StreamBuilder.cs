@@ -44,14 +44,14 @@ namespace Console_Example
         }
 
         // 오름차순 정렬
-        public string[] Sort(string[] arr)
+        public T[] Sort<T>(T[] arr)
         {
             Array.Sort(arr);
             return arr;
         }
 
         // 내림차순 정렬
-        public Array Reverse<T>(T[] arr)
+        public T[] Reverse<T>(T[] arr)
         {
             Array.Reverse(arr);
             return arr;
@@ -70,20 +70,20 @@ namespace Console_Example
         }
 
         // LINQ 정렬
-        public Array LinqOrderBy(string[] arr)
+        public T[] LinqOrderBy<T>(T[] arr)
         {
             //arr.OrderBy(s => s).ToArray();
             return arr.OrderBy(s => s).ToArray();
         }
 
-        public Array LinqOrderByDescending(string[] arr)
+        public T[] LinqOrderByDescending<T>(T[] arr)
         {
             arr.OrderByDescending(s => s).ToArray();
             return arr;
         }
 
         // 중복제거
-        public string[] Distinct(string[] arr)
+        public T[] Distinct<T>(T[] arr)
         {
             return arr.Distinct().ToArray();
         }
