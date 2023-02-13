@@ -21,6 +21,38 @@
             {
                 int[] result = streamBuilder.ParseInt(arr);
 
+                if (state.Linq == LINQ.DESENDING)
+                {
+                    //LINQ 오름차순 내림차순
+                    if (state.Linq == LINQ.ORDERBY)
+                    {
+                        arr = streamBuilder.LinqOrderBy(arr);
+                    }
+                    else if (state.Linq == LINQ.DESENDING)
+                    {
+                        arr = streamBuilder.LinqOrderByDescending(arr);
+                    }
+                }
+                // 배열 정렬 선택시 
+                else if (state.Linq == LINQ.ORDERBY)
+                {
+                    // 오름차순 내림차순
+                    if (state.Sort == SORT.ASC)
+                    {
+                        streamBuilder.Sort(arr);
+                    }
+                    else
+                    {
+                        streamBuilder.Sort(arr);
+                        streamBuilder.Reverse(arr);
+                    }
+                }
+
+                // 중복제거
+                if (state.Duplication == DUPLICATION.DISTINCT)
+                {
+                    arr = streamBuilder.Distinct(arr);
+                }
             }
             else
             {
