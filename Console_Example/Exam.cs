@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-namespace Console_Example
+﻿namespace Console_Example
 {
     class Exam
     {
@@ -22,39 +20,43 @@ namespace Console_Example
             if (state.Code == CODE.NUMBER)
             {
                 int[] result = streamBuilder.ParseInt(arr);
-            }
 
-            // LINQ 정렬 선택 시
-            if (state.Linq == LINQ.DESENDING)
-            {
-                //LINQ 오름차순 내림차순
-                if (state.Linq == LINQ.ORDERBY)
-                {
-                    arr = streamBuilder.LinqOrderBy(arr);
-                }
-                else
-                {
-                    arr = streamBuilder.LinqOrderByDescending(arr);
-                }
             }
-            // 배열 정렬 선택시 
-            else if (state.Linq == LINQ.ORDERBY)
+            else
             {
-                // 오름차순 내림차순
-                if (state.Sort == SORT.ASC)
+                // LINQ 정렬 선택 시
+                if (state.Linq == LINQ.DESENDING)
                 {
-                    arr = streamBuilder.Sort(arr);
+                    //LINQ 오름차순 내림차순
+                    if (state.Linq == LINQ.ORDERBY)
+                    {
+                        arr = streamBuilder.LinqOrderBy(arr);
+                    }
+                    else
+                    {
+                        arr = streamBuilder.LinqOrderByDescending(arr);
+                    }
                 }
-                else
+                // 배열 정렬 선택시 
+                else if (state.Linq == LINQ.ORDERBY)
                 {
-                    arr = streamBuilder.Reverse(arr);
+                    // 오름차순 내림차순
+                    if (state.Sort == SORT.ASC)
+                    {
+                        streamBuilder.Sort(arr);
+                    }
+                    else
+                    {
+                        streamBuilder.Sort(arr);
+                        streamBuilder.Reverse(arr);
+                    }
                 }
-            }
 
-            // 중복제거
-            if (state.Duplication == DUPLICATION.DISTINCT)
-            {
-                arr = streamBuilder.Distinct(arr);
+                // 중복제거
+                if (state.Duplication == DUPLICATION.DISTINCT)
+                {
+                    arr = streamBuilder.Distinct(arr);
+                }
             }
 
             saveCSVFile.SaveFile(saveFileName, arr);
@@ -112,17 +114,12 @@ namespace Console_Example
         {
             try
             {
-                //if (value.GetType() != typeof(int))
-                //{
-                //    throw new Exception("1 또는 2만 입력할 수 있습니다");
-                //}
-
-                if (String.IsNullOrWhiteSpace(value))
+                if (String.IsNullOrEmpty(value))
                 {
                     throw new Exception("값을 입력해주세요.");
                 }
 
-                int currentValue = Convert.ToInt32(value);
+                int.TryParse(value, out int currentValue);
 
                 if (currentValue == 1 || currentValue == 2)
                 {

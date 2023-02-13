@@ -60,25 +60,20 @@ namespace Console_Example
         // 숫자 캐스팅
         public int[] ParseInt(string[] arr)
         {
-            int[] intArr = new int[arr.Length];
-
-            for (int i = 0; i < arr.Length; i++)
-            {
-                intArr[i] = Int32.Parse(arr[i]);
-            }
+            int[] intArr = Array.ConvertAll(arr, str => int.Parse(str));
             return intArr;
         }
 
         // LINQ 정렬
         public T[] LinqOrderBy<T>(T[] arr)
         {
-            //arr.OrderBy(s => s).ToArray();
-            return arr.OrderBy(s => s).ToArray();
+            arr = arr.OrderBy(s => s).ToArray();
+            return arr;
         }
 
         public T[] LinqOrderByDescending<T>(T[] arr)
         {
-            arr.OrderByDescending(s => s).ToArray();
+            arr = arr.OrderByDescending(s => s).ToArray();
             return arr;
         }
 
