@@ -37,5 +37,39 @@ namespace Console_Example
             }
 
         }
+
+        // 파일 중복
+        public string FileUploadName(string dirPath, string fileName)
+        {
+            if (fileName.Length> 0)
+            {
+                int indexOfDot = fileName.LastIndexOf('.');
+                string strName = fileName.Substring(0, indexOfDot);
+                string strExt = fileName.Substring(indexOfDot);
+
+                bool exist = true;
+                int fileCount = 0;
+
+                string dirMapPath = string.Empty;
+
+                while (exist)
+                {
+                    dirMapPath = dirPath;
+                    string pathCombine = Path.Combine(dirMapPath, fileName);
+
+                    if(File.Exists(pathCombine))
+                    {
+                        fileCount++;
+                        fileName = strName + "(" + fileCount + ")" + strExt;
+                    }
+                    else
+                    {
+                        exist= false;
+                    }
+                }
+                
+            }
+            return fileName;
+        }
     }
 }

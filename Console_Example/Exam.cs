@@ -21,30 +21,46 @@
             {
                 int[] result = streamBuilder.ParseInt(arr);
 
-                if (state.Linq == LINQ.DESENDING)
+                Console.WriteLine("숫자 정렬");
+
+                if (state.Linq == LINQ.DESENDING) // 링큐 배열 선택
                 {
                     //LINQ 오름차순 내림차순
                     if (state.Linq == LINQ.ORDERBY)
                     {
                         arr = streamBuilder.LinqOrderBy(arr);
+
+                        Console.WriteLine("링큐 오름차순");
+
+                        foreach (var item in arr)
+                        {
+                            Console.WriteLine(item);   
+                            Console.WriteLine(item.GetType());
+                        }
                     }
                     else if (state.Linq == LINQ.DESENDING)
                     {
                         arr = streamBuilder.LinqOrderByDescending(arr);
+
+                        Console.WriteLine("링큐 내림차순");
                     }
                 }
                 // 배열 정렬 선택시 
-                else if (state.Linq == LINQ.ORDERBY)
+                else if (state.Linq == LINQ.DESENDING)
                 {
                     // 오름차순 내림차순
                     if (state.Sort == SORT.ASC)
                     {
                         streamBuilder.Sort(arr);
+
+                        Console.WriteLine("오름차순");
                     }
-                    else
+                    else if (state.Sort == SORT.DECS)
                     {
                         streamBuilder.Sort(arr);
                         streamBuilder.Reverse(arr);
+
+                        Console.WriteLine("내림차순");
                     }
                 }
 
@@ -52,6 +68,8 @@
                 if (state.Duplication == DUPLICATION.DISTINCT)
                 {
                     arr = streamBuilder.Distinct(arr);
+
+                    Console.WriteLine("중복제거");
                 }
             }
             else
@@ -91,7 +109,7 @@
                 }
             }
 
-            saveCSVFile.SaveFile(saveFileName, arr);
+            //saveCSVFile.SaveFile(saveFileName, arr);
         }
 
         public static void Init(State state)
