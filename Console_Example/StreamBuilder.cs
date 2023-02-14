@@ -6,7 +6,7 @@ namespace Console_Example
 {
     public class StreamBuilder : StreamBuilderInterface
     {
-        public string FileName = "";
+        public string readFileName = "";
 
         public string[] Read()
         {
@@ -14,7 +14,7 @@ namespace Console_Example
 
             if (Validate())
             {
-                arr = File.ReadAllLines(FileName);
+                arr = File.ReadAllLines(readFileName);
                 return arr;
             }
             else
@@ -27,7 +27,7 @@ namespace Console_Example
         {
             try
             {
-                if (!File.Exists(FileName))
+                if (!File.Exists(readFileName))
                 {
                     throw new NullReferenceException("파일이 존재하지 않습니다.");
 

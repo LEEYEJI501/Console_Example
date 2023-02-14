@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Console_Example;
 
 namespace Console_Example
 {
@@ -34,6 +35,41 @@ namespace Console_Example
 
                 return false;
             }
+        }
+
+        // 파일명 지정
+        public string FileNameSetting(string FileName)
+        {
+            int[] test =
+            {
+                (int)State.Sort,
+                (int)State.Code,
+                (int)State.Method,
+                (int)State.Duplication
+            };
+
+            for(int i = 0; i < test.Length; i++)
+            {
+                int num = test[i];
+
+                switch (num)
+                {
+                    case 0:
+                        FileName += Enum.GetName(typeof(SORT), num) + "_";
+                        continue;
+                    case 1:
+                        FileName += test[i] + "_";
+                        continue;
+                    case 2:
+                        FileName += test[i] + "_";
+                        continue;
+                    case 3:
+                        FileName += test[i] + ".csv";
+                        break;
+                }
+            }
+
+            return FileName;
         }
 
         // 파일 중복

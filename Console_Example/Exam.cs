@@ -5,11 +5,11 @@
         static void Main(string[] args)
         {
             StreamBuilder streamBuilder = new StreamBuilder();
-            streamBuilder.FileName = @"D:\test.txt";
+            streamBuilder.readFileName = @"D:\test.txt";
             CSVBuilder csvBuilder = new CSVBuilder();
 
             // 파일 이름 선언
-            string saveFileName = "Test.csv";
+            string saveFileName = "";
 
             Init();
 
@@ -25,14 +25,18 @@
                 if (result.GetType() == typeof(int[]))
                 {
                     arr = Array.ConvertAll(result, s => s.ToString());
-                    csvBuilder.SaveFile(saveFileName, arr);
+
+                    string fileNameFinal = csvBuilder.FileNameSetting(saveFileName);
+                    Console.WriteLine(fileNameFinal.ToString());
+                    csvBuilder.SaveFile(fileNameFinal, arr);
                 }
             }
             else
             {
                 arr = execute(arr, streamBuilder);
 
-                csvBuilder.SaveFile(saveFileName, arr);
+                //string fileNameFinal = csvBuilder.FileNameSetting(saveFileName);
+                //csvBuilder.SaveFile(saveFileName, arr);
             }
         }
 
