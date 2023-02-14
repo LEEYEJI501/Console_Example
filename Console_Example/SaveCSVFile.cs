@@ -64,7 +64,7 @@ namespace Console_Example
                         FileName += test[i] + "_";
                         continue;
                     case 3:
-                        FileName += test[i] + ".csv";
+                        FileName += test[i];
                         break;
                 }
             }

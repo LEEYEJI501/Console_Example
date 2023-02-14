@@ -28,7 +28,7 @@
 
                     string fileNameFinal = csvBuilder.FileNameSetting(saveFileName);
                     Console.WriteLine(fileNameFinal.ToString());
-                    csvBuilder.SaveFile(fileNameFinal, arr);
+                    csvBuilder.SaveFile(fileNameFinal + ".csv", arr);
                 }
             }
             else
