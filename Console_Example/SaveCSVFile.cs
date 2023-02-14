@@ -2,7 +2,7 @@
 
 namespace Console_Example
 {
-    public class SaveCSVFile
+    public class CSVBuilder
     {
         public const string path = @"D:\";
 
@@ -26,7 +26,6 @@ namespace Console_Example
                 if (arr.Length > 0)
                     return true;
 
-
                 throw new Exception("빈 배열 들어옴");
             }
             catch (Exception ex)
@@ -35,13 +34,12 @@ namespace Console_Example
 
                 return false;
             }
-
         }
 
         // 파일 중복
         public string FileUploadName(string dirPath, string fileName)
         {
-            if (fileName.Length> 0)
+            if (fileName.Length > 0)
             {
                 int indexOfDot = fileName.LastIndexOf('.');
                 string strName = fileName.Substring(0, indexOfDot);
@@ -57,17 +55,17 @@ namespace Console_Example
                     dirMapPath = dirPath;
                     string pathCombine = Path.Combine(dirMapPath, fileName);
 
-                    if(File.Exists(pathCombine))
+                    if (File.Exists(pathCombine))
                     {
                         fileCount++;
                         fileName = strName + "(" + fileCount + ")" + strExt;
                     }
                     else
                     {
-                        exist= false;
+                        exist = false;
                     }
                 }
-                
+
             }
             return fileName;
         }

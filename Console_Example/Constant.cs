@@ -14,10 +14,10 @@ namespace Console_Example
         STRING = 2
     }
 
-    enum LINQ
+    enum METHOD
     {
-        ORDERBY = 1,
-        DESENDING = 2
+        SORT = 1,
+        LINQ = 2
     }
 
     enum DUPLICATION

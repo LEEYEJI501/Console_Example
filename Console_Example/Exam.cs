@@ -1,118 +1,45 @@
-﻿namespace Console_Example
+﻿using System.Globalization;
+
+namespace Console_Example
 {
     class Exam
     {
         static void Main(string[] args)
         {
-            State state = new State();
+            //State state = new State();
             StreamBuilder streamBuilder = new StreamBuilder();
             streamBuilder.FileName = @"D:\test.txt";
-            SaveCSVFile saveCSVFile = new SaveCSVFile();
+            CSVBuilder csvBuilder = new CSVBuilder();
 
             // 파일 이름 선언
             string saveFileName = "Test.csv";
 
-            Init(state);
+            Init();
 
             string[] arr = streamBuilder.Read();
 
             // 숫자 정렬
-            if (state.Code == CODE.NUMBER)
+            if (State.Code == CODE.NUMBER)
             {
                 int[] result = streamBuilder.ParseInt(arr);
 
-                Console.WriteLine("숫자 정렬");
+                result = execute(result, streamBuilder);
 
-                if (state.Linq == LINQ.DESENDING) // 링큐 배열 선택
+                if (result.GetType() == typeof(int[]))
                 {
-                    //LINQ 오름차순 내림차순
-                    if (state.Linq == LINQ.ORDERBY)
-                    {
-                        arr = streamBuilder.LinqOrderBy(arr);
-
-                        Console.WriteLine("링큐 오름차순");
-
-                        foreach (var item in arr)
-                        {
-                            Console.WriteLine(item);   
-                            Console.WriteLine(item.GetType());
-                        }
-                    }
-                    else if (state.Linq == LINQ.DESENDING)
-                    {
-                        arr = streamBuilder.LinqOrderByDescending(arr);
-
-                        Console.WriteLine("링큐 내림차순");
-                    }
-                }
-                // 배열 정렬 선택시 
-                else if (state.Linq == LINQ.DESENDING)
-                {
-                    // 오름차순 내림차순
-                    if (state.Sort == SORT.ASC)
-                    {
-                        streamBuilder.Sort(arr);
-
-                        Console.WriteLine("오름차순");
-                    }
-                    else if (state.Sort == SORT.DECS)
-                    {
-                        streamBuilder.Sort(arr);
-                        streamBuilder.Reverse(arr);
-
-                        Console.WriteLine("내림차순");
-                    }
-                }
-
-                // 중복제거
-                if (state.Duplication == DUPLICATION.DISTINCT)
-                {
-                    arr = streamBuilder.Distinct(arr);
-
-                    Console.WriteLine("중복제거");
+                    arr = Array.ConvertAll(result, s => s.ToString());
+                    csvBuilder.SaveFile(saveFileName, arr);
                 }
             }
             else
             {
-                // LINQ 정렬 선택 시
-                if (state.Linq == LINQ.DESENDING)
-                {
-                    //LINQ 오름차순 내림차순
-                    if (state.Linq == LINQ.ORDERBY)
-                    {
-                        arr = streamBuilder.LinqOrderBy(arr);
-                    }
-                    else
-                    {
-                        arr = streamBuilder.LinqOrderByDescending(arr);
-                    }
-                }
-                // 배열 정렬 선택시 
-                else if (state.Linq == LINQ.ORDERBY)
-                {
-                    // 오름차순 내림차순
-                    if (state.Sort == SORT.ASC)
-                    {
-                        streamBuilder.Sort(arr);
-                    }
-                    else
-                    {
-                        streamBuilder.Sort(arr);
-                        streamBuilder.Reverse(arr);
-                    }
-                }
+                arr = execute(arr, streamBuilder);
 
-                // 중복제거
-                if (state.Duplication == DUPLICATION.DISTINCT)
-                {
-                    arr = streamBuilder.Distinct(arr);
-                }
+                csvBuilder.SaveFile(saveFileName, arr);
             }
-
-            //saveCSVFile.SaveFile(saveFileName, arr);
         }
 
-        public static void Init(State state)
+        private static void Init()
         {
             int index = 0;
 
@@ -121,8 +48,10 @@
             START:
                 Console.WriteLine("정렬 방식을 선택하세요.");
 
-                Console.WriteLine(state.ments[index]);
+                Console.WriteLine(State.ments[index]);
+
                 string? Choice = Console.ReadLine();
+
                 bool isCheck = Validate(Choice);
 
                 if (!isCheck)
@@ -130,7 +59,7 @@
                     goto START;
                 }
 
-                Step(state, index, Choice);
+                Step(index, Choice);
 
                 index++;
 
@@ -139,28 +68,27 @@
         }
 
         // 입력받은 값 추가
-        public static void Step(State state, int index, string Choice)
+        private static void Step(int index, string Choice)
         {
             switch (index)
             {
                 case 0:
-                    state.Sort = (SORT)Convert.ToInt32(Choice);
+                    State.Sort = (SORT)Convert.ToInt32(Choice);
                     break;
                 case 1:
-                    state.Code = (CODE)Convert.ToInt32(Choice);
+                    State.Code = (CODE)Convert.ToInt32(Choice);
                     break;
                 case 2:
-                    state.Linq = (LINQ)Convert.ToInt32(Choice);
+                    State.Method = (METHOD)Convert.ToInt32(Choice);
                     break;
                 case 3:
-                    state.Duplication = (DUPLICATION)Convert.ToInt32(Choice);
+                    State.Duplication = (DUPLICATION)Convert.ToInt32(Choice);
                     break;
             }
-
         }
 
         // 입력값 검수
-        public static bool Validate(string? value)
+        private static bool Validate(string? value)
         {
             try
             {
@@ -186,6 +114,39 @@
                 Console.WriteLine(e.Message);
                 return false;
             }
+        }
+
+        private static T[] execute<T>(T[] arr, StreamBuilder streamBuilder)
+        {
+            // 중복제거
+            if (State.Duplication == DUPLICATION.DISTINCT)
+            {
+                arr = streamBuilder.Distinct(arr);
+            }
+
+            // 오름차순 내림차순
+            if (State.Sort == SORT.ASC)
+            {
+                arr = streamBuilder.Sort(arr);
+            }
+            else
+            {
+                arr = streamBuilder.Sort(arr);
+                arr = streamBuilder.Reverse(arr);
+            }
+
+            //LINQ 방식
+            if (State.Method == METHOD.LINQ && State.Sort == SORT.ASC)
+            {
+                arr = streamBuilder.LinqOrderBy(arr);
+            }
+            else if (State.Method == METHOD.LINQ && State.Sort == SORT.DECS)
+            {
+                arr = streamBuilder.LinqOrderByDescending(arr);
+                Console.WriteLine(arr.GetType());
+            }
+
+            return arr;
         }
     }
 

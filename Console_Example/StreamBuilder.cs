@@ -4,11 +4,10 @@ using System.Linq;
 
 namespace Console_Example
 {
-    public class StreamBuilder
+    public class StreamBuilder : StreamBuilderInterface
     {
         public string FileName = "";
 
-        // 파일 읽어오기
         public string[] Read()
         {
             string[] arr = { };
@@ -24,7 +23,6 @@ namespace Console_Example
             }
         }
 
-        // 파일 유무 체크
         public bool Validate()
         {
             try
@@ -43,28 +41,24 @@ namespace Console_Example
             }
         }
 
-        // 오름차순 정렬
         public T[] Sort<T>(T[] arr)
         {
             Array.Sort(arr);
             return arr;
         }
 
-        // 내림차순 정렬
         public T[] Reverse<T>(T[] arr)
         {
             Array.Reverse(arr);
             return arr;
         }
 
-        // 숫자 캐스팅
         public int[] ParseInt(string[] arr)
         {
             int[] intArr = Array.ConvertAll(arr, str => int.Parse(str));
             return intArr;
         }
 
-        // LINQ 정렬
         public T[] LinqOrderBy<T>(T[] arr)
         {
             arr = arr.OrderBy(s => s).ToArray();
@@ -77,7 +71,6 @@ namespace Console_Example
             return arr;
         }
 
-        // 중복제거
         public T[] Distinct<T>(T[] arr)
         {
             return arr.Distinct().ToArray();
