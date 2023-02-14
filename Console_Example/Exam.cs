@@ -1,12 +1,9 @@
-﻿using System.Globalization;
-
-namespace Console_Example
+﻿namespace Console_Example
 {
     class Exam
     {
         static void Main(string[] args)
         {
-            //State state = new State();
             StreamBuilder streamBuilder = new StreamBuilder();
             streamBuilder.FileName = @"D:\test.txt";
             CSVBuilder csvBuilder = new CSVBuilder();
