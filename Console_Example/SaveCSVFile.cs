@@ -38,38 +38,42 @@ namespace Console_Example
         }
 
         // 파일명 지정
-        public string FileNameSetting(string FileName)
+        public string GetFileName()
         {
-            int[] test =
-            {
-                (int)State.Sort,
-                (int)State.Code,
-                (int)State.Method,
-                (int)State.Duplication
-            };
+            string name = "";
 
-            for(int i = 0; i < test.Length; i++)
-            {
-                int num = test[i];
+            int sort = ((int)State.Sort == 1) ? 100 : 200;
+            int code = ((int)State.Code == 1) ? 300 : 400;
+            int duplication = ((int)State.Duplication == 1) ? 500 : 600;
 
-                switch (num)
-                {
-                    case 0:
-                        FileName += Enum.GetName(typeof(SORT), num) + "_";
-                        continue;
-                    case 1:
-                        FileName += test[i] + "_";
-                        continue;
-                    case 2:
-                        FileName += test[i] + "_";
-                        continue;
-                    case 3:
-                        FileName += test[i];
-                        break;
-                }
+            if (sort == (int)CONVERT.ASC)
+            {
+                name += State.Convert(CONVERT.ASC) + "_";
+            }
+            else
+            {
+                name += State.Convert(CONVERT.DECS) + "_";
             }
 
-            return FileName;
+            if (code == (int)CONVERT.STRING)
+            {
+                name += State.Convert(CONVERT.STRING) + "__";
+            }
+            else
+            {
+                name += State.Convert(CONVERT.NUMBER) + "__";
+            }
+
+            if (duplication == (int)CONVERT.DISTINCT)
+            {
+                name += State.Convert(CONVERT.DISTINCT);
+            }
+            else
+            {
+                name += State.Convert(CONVERT.NOT);
+            }
+
+            return name;
         }
 
         // 파일 중복

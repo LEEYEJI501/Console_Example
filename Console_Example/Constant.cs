@@ -25,4 +25,14 @@ namespace Console_Example
         DISTINCT = 1,
         NOT = 2
     }
+
+    enum CONVERT
+    {
+        ASC = 100,
+        DECS = 200,
+        NUMBER = 300,
+        STRING = 400,
+        DISTINCT = 500,
+        NOT = 600
+    }
 }

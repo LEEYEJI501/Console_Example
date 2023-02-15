@@ -6,10 +6,8 @@
         {
             StreamBuilder streamBuilder = new StreamBuilder();
             streamBuilder.readFileName = @"D:\test.txt";
-            CSVBuilder csvBuilder = new CSVBuilder();
-
-            // 파일 이름 선언
-            string saveFileName = "";
+            CSVBuilder csvBuilder = new CSVBuilder(); 
+            string fileName = "";
 
             Init();
 
@@ -26,17 +24,16 @@
                 {
                     arr = Array.ConvertAll(result, s => s.ToString());
 
-                    string fileNameFinal = csvBuilder.FileNameSetting(saveFileName);
-                    Console.WriteLine(fileNameFinal.ToString());
-                    csvBuilder.SaveFile(fileNameFinal + ".csv", arr);
+                    fileName = csvBuilder.GetFileName();
+                    csvBuilder.SaveFile("Export_" + fileName + ".csv", arr);
                 }
             }
             else
             {
                 arr = execute(arr, streamBuilder);
 
-                //string fileNameFinal = csvBuilder.FileNameSetting(saveFileName);
-                //csvBuilder.SaveFile(saveFileName, arr);
+                fileName = csvBuilder.GetFileName();
+                csvBuilder.SaveFile("Export_" + fileName + ".csv", arr);
             }
         }
 
@@ -144,7 +141,6 @@
             else if (State.Method == METHOD.LINQ && State.Sort == SORT.DECS)
             {
                 arr = streamBuilder.LinqOrderByDescending(arr);
-                Console.WriteLine(arr.GetType());
             }
 
             return arr;

@@ -15,6 +15,26 @@ namespace Console_Example
            "1.ArraySort, 2.LinqOrderBy",
            "1.중복제거, 2.중복제거안함"
         };
-    }
 
+        public static string Convert(CONVERT convert)
+        {
+            switch (convert)
+            {
+                case CONVERT.ASC:
+                    return "Asc";
+                case CONVERT.DECS:
+                    return "Decs";
+                case CONVERT.NUMBER:
+                    return "number";
+                case CONVERT.STRING:
+                    return "string";
+                case CONVERT.DISTINCT:
+                    return "중복제거";
+                case CONVERT.NOT:
+                    return "제거안함";
+                default:
+                    return "";
+            }
+        }
+    }
 }
