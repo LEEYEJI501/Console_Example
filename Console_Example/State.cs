@@ -1,5 +1,6 @@
 ﻿using System;
 
+// 사용자 입력값을 가지고 있는 객체
 namespace Console_Example
 {
     static class State

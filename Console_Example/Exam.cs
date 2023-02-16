@@ -6,7 +6,7 @@
         {
             StreamBuilder streamBuilder = new StreamBuilder();
             streamBuilder.readFileName = @"D:\test.txt";
-            CSVBuilder csvBuilder = new CSVBuilder(); 
+            CSVBuilder csvBuilder = new CSVBuilder();
             string fileName = "";
 
             Init();
@@ -41,28 +41,48 @@
         {
             int index = 0;
 
-            while (true)
-            {
-            START:
-                Console.WriteLine("정렬 방식을 선택하세요.");
+            //while (true)
+            //{
+            //START:
+            //    Console.WriteLine("정렬 방식을 선택하세요.");
 
-                Console.WriteLine(State.ments[index]);
+            //    Console.WriteLine(State.ments[index]);
 
-                string? Choice = Console.ReadLine();
+            //    string? Choice = Console.ReadLine();
 
-                bool isCheck = Validate(Choice);
+            //    bool isCheck = Validate(Choice);
 
-                if (!isCheck)
-                {
-                    goto START;
-                }
+            //    if (!isCheck)
+            //    {
+            //        goto START;
+            //    }
 
-                Step(index, Choice);
+            //    Step(index, Choice);
 
-                index++;
+            //    index++;
 
-                if (index == 4) break;
-            }
+            //    if (index == 4) break;
+            //}
+
+            //do
+            //{
+            //    Console.WriteLine("정렬 방식을 선택하세요.");
+
+            //    Console.WriteLine(State.ments[index]);
+
+            //    string? Choice = Console.ReadLine();
+
+            //    bool isCheck = Validate(Choice);
+
+            //    if (!isCheck)
+            //    {
+            //        index--;
+            //        continue;
+            //    }
+
+            //    if (index == 4) break;
+
+            //} while (true);
         }
 
         // 입력받은 값 추가
